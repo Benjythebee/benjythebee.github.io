@@ -123,12 +123,16 @@ limitations under the License.
 		var bgColor = "rgb(" + x + "," + y + "," + z + ")";
 		document.body.style.backgroundColor = bgColor;
 	}
+	function setcolor(clr){
+	
+	document.body.style.backgroundColor = clr;
+	}
 	var strobotime;	
 	function start(color, timestamps){
 		if(color!="random"){
 	  strobotime= setInterval(random_bg_color(),timestamps);
 	  }else{
-	  
+	  strobotime= setInterval(setcolor(config[3]),timestamps);
 	  }
 	}
 	//setInterval(random_bg_color,time);
