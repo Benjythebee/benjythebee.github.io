@@ -19,6 +19,7 @@ limitations under the License.
     <style type="text/css">
 	  body {
 	    overflow:hidden;
+		background-color: #f2d6ff;
 	  }
       div{
 	    height:720PX;
@@ -27,17 +28,17 @@ limitations under the License.
 	    border:0px solid silver;
 	    display: table-cell;
 	    vertical-align:middle;
-	    color:#FFFFFF;
-	    background-color:#000000;
+	    color:#000000;
+	    background-color:#f2d6ff;
 	    font-weight:bold;
 	    font-family:Verdana, Geneva, sans-serif;
 	    font-size:40px;
 	}
     </style>
-    <title>Cast Hello Text</title>
+    <title>Strobo</title>
   </head>
   <body>
-	<DIV id="message">Talk to me</DIV>
+	<DIV id="message">Strobo!</DIV>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
       window.onload = function() {
@@ -80,8 +81,13 @@ limitations under the License.
         window.messageBus.onMessage = function(event) {
           console.log('Message [' + event.senderId + ']: ' + event.data);
           // display the message from the sender
-          displayText(event.data);
-          // inform all senders on the CastMessageBus of the incoming message event
+         
+		 //displayText(event.data);
+		 	if (event.data=="ok"){
+			start();
+			}
+
+		 // inform all senders on the CastMessageBus of the incoming message event
           // sender message listener will be invoked
           window.messageBus.send(event.senderId, event.data);
         }
@@ -92,11 +98,30 @@ limitations under the License.
       };
 
       // utility function to display the text message in the input field
-      function displayText(text) {
-        console.log(text);
-        document.getElementById("message").innerHTML=text;
-        window.castReceiverManager.setApplicationState(text);
-      };
+     // function displayText(text) {
+       // console.log(text);
+        //document.getElementById("message").innerHTML=text;
+        //window.castReceiverManager.setApplicationState(text);
+      //};
+	  //function changeBackground(text){
+	  //console.log(text);
+	  //document.getElementById("body").style.background-color=text;
+	  //window.castReceiverManager.setApplicationState(text)
+	  //}
+	  var time=500;
+
+	  function random_bg_color() {
+		var x = Math.floor(Math.random() * 256);
+		var y = Math.floor(Math.random() * 256);
+		var z = Math.floor(Math.random() * 256);
+		var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+		document.body.style.backgroundColor = bgColor;
+	}	  
+	function start(){
+	  setInterval(random_bg_color,time);
+	  }
+	//setInterval(random_bg_color,time);
+
     </script>
   </body>
 </html>
