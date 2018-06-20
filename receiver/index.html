@@ -82,8 +82,16 @@ limitations under the License.
           // display the message from the sender
          
 		 //displayText(event.data);
-		 	if (event.data=="ok"){
-			start();
+		 	var received= event.data.replace(/[\[\]']+/g, '');
+			var config = received.split(",");
+			if (config[0]=="on"){
+				if(config[2]=="random"){
+				start(config[2],config[1]);
+				}else{
+				start(config[3],config[1]);
+				}
+			}else{
+			clearInterval(strobotime);
 			}
 
 		 // inform all senders on the CastMessageBus of the incoming message event
@@ -107,7 +115,6 @@ limitations under the License.
 	  //document.getElementById("body").style.background-color=text;
 	  //window.castReceiverManager.setApplicationState(text)
 	  //}
-	  var time=500;
 
 	  function random_bg_color() {
 		var x = Math.floor(Math.random() * 256);
@@ -115,10 +122,15 @@ limitations under the License.
 		var z = Math.floor(Math.random() * 256);
 		var bgColor = "rgb(" + x + "," + y + "," + z + ")";
 		document.body.style.backgroundColor = bgColor;
-	}	  
-	function start(){
-	  setInterval(random_bg_color,time);
+	}
+	var strobotime;	
+	function start(color, timestamps){
+		if(color!="random"){
+	  strobotime= setInterval(random_bg_color(),timestamps);
+	  }else{
+	  
 	  }
+	}
 	//setInterval(random_bg_color,time);
 
     </script>
