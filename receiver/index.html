@@ -85,14 +85,27 @@ limitations under the License.
 		 	var received= event.data.replace(/[\[\]']+/g, '');
 			var config = received.split(",");
 			if (config[0]=="on"){
-				if(config[2]=="random"){
-				start(config[2],config[1]);
+				if(config[2]=="random" ){
+					if(config[4]!="random"){
+					start(config[2],config[1]);
+					}else{
+					start(config[2],config[4]);
+					}
 				}else{
-				start(config[3],config[1]);
+					if(config[4]!="random"){
+					start(config[3],config[1]);
+					}else{
+					start(config[3],config[4]);
+					}
 				}
 			}else{
 			clearInterval(strobotime);
 			}
+			//config.add("on");
+       // config.add("500");
+        //config.add("random");
+        //config.add("#00000");
+       // config.add("random");
 
 		 // inform all senders on the CastMessageBus of the incoming message event
           // sender message listener will be invoked
@@ -115,28 +128,142 @@ limitations under the License.
 	  //document.getElementById("body").style.background-color=text;
 	  //window.castReceiverManager.setApplicationState(text)
 	  //}
+	var interval = 4000;
+	var num=(random_int(1000));
+	var l=get_interval();
+	var epilepsy;//=setInterval(request2,num);
+	var run; //= setTimeout(request,interval); // start setInterval as "run"
+	var state = false;
+	var cl= "#2eff00";
+	
+	function random_int(max){
+			var result=Math.floor(Math.random()*Math.floor(max));
+			return result;
+	}
+	function get_interval() {
+		inte = random_int(3);
+		switch(inte){
+		case 1:
+			interval = 2000;
+			return interval;
+			break;
+		case 2:
+			interval = 4000;
+			return interval;
+			break;
+		case 3:
+			interval = 6000;
+			return interval;
+			break;
+		default:
+			interval = 4000;
+			return interval;
+			break;
+	}
 
-	  function random_bg_color() {
+	function random_bg_color() {
 		var x = Math.floor(Math.random() * 256);
 		var y = Math.floor(Math.random() * 256);
 		var z = Math.floor(Math.random() * 256);
 		var bgColor = "rgb(" + x + "," + y + "," + z + ")";
 		document.body.style.backgroundColor = bgColor;
 	}
-	function setcolor(clr){
-	
-	document.body.style.backgroundColor = clr;
+	function random_hsl_color() {
+		var cssHSL = "hsl(" + 360 * Math.random() + ',' +(70 + 100 * Math.random()) + '%,50%)';
+		return cssHSL;
+
 	}
+	function blink(stat){
+    		//cl=random_hsl_color();
+            state = !stat;
+            var color = (state? cl:'rgb(255, 255, 255)');
+            document.body.style.backgroundColor  = color;
+            
+	}
+	function blinkfixed(ti){
+    		//cl=random_hsl_color();
+            setInterval(function(){
+			state = !stat;
+            var color = (state? cl:'rgb(255, 255, 255)');
+            document.body.style.backgroundColor  = color;
+            },ti);
+	}
+	function random_int(max){
+		return Math.floor(Math.random()*Math.floor(max));
+	}
+	function randomcolor_randomtime2(){
+		random_bg_color(num);
+        clearInterval(epilepsy);
+        epilepsy = setInterval(randomcolor_randomtime2, num); // start the setInterval()
+        }
+	function randomcolor_randomtime() { 
+	l=get_interval();
+			num=(random_int(1000));
+			function request2(){
+				random_bg_color(num);
+
+				epilepsy = setInterval(randomcolor_randomtime2, num); // start the setInterval()
+			}
+
+
+			run = setTimeout(randomcolor_randomtime, l); // start the setInterval()
+
+
+		}
+		//################################Fixed color random time##################
+function fixedcolor_randomtime2(){
+                clearInterval(epilepsy);
+				blink(state);
+				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
+}
+function fixedcolor_randomtime(state) { 
+			l=get_interval();
+			num=(random_int(800));
+            document.getElementById("demo").innerHTML=l;
+
+			function fixedcolor_randomtime2(){
+				blink(state);
+				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
+			}
+
+
+			run = setTimeout(fixedcolor_randomtime, l); // start the setInterval()
+
+
+		}
+function stopall(){
+clearInterval(epilepsy);
+clearInterval(run);
+clearInterval(strobotime);
+
+}
+		//########################Start the strobo###################################
 	var strobotime;	
 	function start(color, timestamps){
-		if(color!="random"){
-	  strobotime= setInterval(random_bg_color(),timestamps);
-	  }else{
-	  strobotime= setInterval(setcolor(config[3]),timestamps);
-	  }
+	stopall();
+		if(color=="random"){
+			if(timestamps!="random"){
+				strobotime= setInterval(random_bg_color,timestamps);
+				}else{
+					randomcolor_randomtime();
+					randomcolor_randomtime2();
+				}
+		}else{
+					if(timestamps!="random"){
+					cl=color;
+					blinkfixed(timestamps);
+					}else{
+					cl=color;
+					fixedcolor_randomtime();
+					fixedcolor_randomtime2();
+					}
+				}
 	}
 	//setInterval(random_bg_color,time);
 
+	
+	
+	
     </script>
   </body>
 </html>
