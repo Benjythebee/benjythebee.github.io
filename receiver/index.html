@@ -101,6 +101,7 @@ limitations under the License.
 		 //displayText(event.data);
 		 //######################################################MESSAGE RECEIVED ################################
 		 	var state = false;
+
 			var received= event.data.replace(/\s/g, '');
 			var receivedd= received.replace(/[\[\]']+/g, '');
 			var config = receivedd.split(",");
@@ -108,6 +109,7 @@ limitations under the License.
 			document.getElementById("conf2").innerHTML=config[0];
 			var statee=(config[0]+", "+config[2]+", "+ config[4])
 			window.castReceiverManager.setApplicationState(event.data);
+			cl=config[3];
 			if (config[0]=="on"){
 				if(config[2]=="random" ){
 					if(config[4]!="random"){
@@ -150,13 +152,14 @@ limitations under the License.
         window.castReceiverManager.start({statusText: "Application is starting"});
         console.log('Receiver Manager started');
       };
+	var cl;
 	var interval = 4000;
 	var num=(random_int(1000));
 	var l=get_interval();
 	var epilepsy;//=setInterval(request2,num);
 	var run; //= setTimeout(request,interval); // start setInterval as "run"
 
-	var cl=config[3];
+
       // utility function to display the text message in the input field
      // function displayText(text) {
        // console.log(text);
