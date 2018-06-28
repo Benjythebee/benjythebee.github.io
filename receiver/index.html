@@ -106,9 +106,12 @@ var receivedd= received.replace(/[\[\]']+/g, '');
 var config = receivedd.split(",");
          document.getElementById("conf4").innerHTML=received;
 			document.getElementById("conf2").innerHTML=config[4];
+			var statee=(config[0]+", "+config[2]+", "+ config[4])
+			window.castReceiverManager.setApplicationState(statee);
 			if (config[0]=="on"){
 				if(config[2]=="random" ){
 					if(config[4]!="random"){
+					
 					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[1]);
 					start(config[2],config[1]);//random;fixed
 					
