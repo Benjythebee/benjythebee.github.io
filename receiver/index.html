@@ -229,7 +229,7 @@ function rando(min, max) {
             
 	}
 	function blinkfixed(cl,ti,stat){
-            setInterval(function(){
+            blinkinterval=setInterval(function(){
 			stat = !stat;
 			document.getElementById("conf3").innerHTML=(cl);
 			document.getElementById("conf2").innerHTML=(stat);
@@ -285,6 +285,7 @@ function stopall(){
 clearInterval(epilepsy);
 clearInterval(run);
 clearInterval(strobotime);
+clearInterval(blinkinterval);
 
 }
 		//########################Start the strobo###################################
