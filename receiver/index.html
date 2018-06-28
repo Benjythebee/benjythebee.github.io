@@ -37,6 +37,9 @@ limitations under the License.
 		    text-align:center;
 			font-size:30px;
 	}
+	#txt{
+	display: table-column;
+	}
 	#conf4{
 	display: table-cell;
 	}
@@ -44,11 +47,13 @@ limitations under the License.
     <title>Strobo</title>
   </head>
   <body>
+  <div id="txt">
   <p id="conf4">conf4</p>
 	<DIV id="message">Strobo!</DIV>
 	<p id="conf1">conf1</p>
-	<p id="conf2"></p>
+	<p id="conf2">conf2</p>
 	<p id="conf3"></p>
+	</div>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
       window.onload = function() {
@@ -188,7 +193,7 @@ limitations under the License.
 		document.body.style.backgroundColor = bgColor;
 	}
 	function random_hsl_color() {
-		var cssHSL = "hsl(" + 360 * Math.random() + ',' +(70 + 100 * Math.random()) + '%,50%)';
+		var cssHSL = "hsl(" + 360 * Math.random() + "," +(70 + 100 * Math.random()) + "%,50%)";
 		return cssHSL;
 
 	}
