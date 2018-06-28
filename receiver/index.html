@@ -292,18 +292,22 @@ clearInterval(blinkinterval);
 var strobotime;	
 
 function start(color, timestamps){
-	 stopall();
+
 	if(color=="random"){
 		if(timestamps!="random"){
+			 stopall();
 			strobotime= setInterval(random_bghsl_color,timestamps);
 			}else{
+				 stopall();
 				randomcolor_randomtime();
 				randomcolor_randomtime2();
 			}
 	}else{
 		if(timestamps!="random"){
+			 stopall();
 			blinkfixed(color,timestamps,state);
 		}else{
+			 stopall();
 			cl=color;
 			fixedcolor_randomtime(color);
 			fixedcolor_randomtime2();
