@@ -219,6 +219,7 @@ function rando(min, max) {
             state = !stat;
             var color = (state? cl:'rgb(255, 255, 255)');
             document.getElementById("conf3").innerHTML=(color);
+			document.getElementById("conf2").innerHTML=(stat);
             document.body.style.backgroundColor  = color;
             
 	}
@@ -226,6 +227,8 @@ function rando(min, max) {
             setInterval(function(){
 			stat = !stat;
             var color = (stat? cl:'rgb(255, 255, 255)');
+			document.getElementById("conf3").innerHTML=(color);
+			document.getElementById("conf2").innerHTML=(stat);
             document.body.style.backgroundColor  = color;
             },ti);
 	}
