@@ -37,9 +37,9 @@ limitations under the License.
     <title>Strobo</title>
   </head>
   <body>
-  <p id="conf4"></p>
+  <p id="conf4">conf4</p>
 	<DIV id="message">Strobo!</DIV>
-	<p id="conf1"></p>
+	<p id="conf1">conf1</p>
 	<p id="conf2"></p>
 	<p id="conf3"></p>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
@@ -91,20 +91,20 @@ limitations under the License.
 			if (config[0]=="on"){
 				if(config[2]=="random" ){
 					if(config[4]!="random"){
-					document.getElementById("conf1").innerHTML=config[2]+" "+ config[1];
+					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[1]);
 					start(config[2],config[1]);
 					
 					}else{
-					document.getElementById("conf1").innerHTML=config[2]+" "+ config[4]
+					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[4]);
 					start(config[2],config[4]);
 					
 					}
 				}else{
 					if(config[4]!="random"){
-					document.getElementById("conf1").innerHTML=config[3]+" "+ config[1]
+					document.getElementById("conf1").innerHTML=(config[3]+" "+ config[1]);
 					start(config[3],config[1]);
 					}else{
-					document.getElementById("conf1").innerHTML=config[3]+" "+ config[4]
+					document.getElementById("conf1").innerHTML=(config[3]+" "+ config[4]);
 					start(config[3],config[4]);
 					}
 				}
