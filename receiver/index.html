@@ -217,10 +217,9 @@ function rando(min, max) {
 	}
 	function blink(cl,stat){
     		//cl=random_hsl_color();
-            stat = !stat;
-            var color = (stat? cl:'rgb(255, 255, 255)');
+            state = !stat;
+            var color = (state? cl:'rgb(255, 255, 255)');
             document.getElementById("conf3").innerHTML=(color);
-			document.getElementById("conf2").innerHTML=(stat);
             document.body.style.backgroundColor  = color;
             
 	}
@@ -257,16 +256,14 @@ function rando(min, max) {
 
 		}
 		//################################Fixed color random time##################
-function fixedcolor_randomtime2(cl){
+function fixedcolor_randomtime2(){
                 clearInterval(epilepsy);
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 }
-function fixedcolor_randomtime(cl,state) { 
+function fixedcolor_randomtime() { 
 			l=get_interval();
 			num=(random_int(800));
-			document.getElementById("conf3").innerHTML=(cl);
-			document.getElementById("conf2").innerHTML=(stat);
 			function fixedcolor_randomtime2(){
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
@@ -304,8 +301,8 @@ stopall();
 		}else{
 			 
 			cl=color;
-			fixedcolor_randomtime(color);
-			fixedcolor_randomtime2(color);
+			fixedcolor_randomtime();
+			fixedcolor_randomtime2();
 			};
 		};
 			//window.castReceiverManager.setApplicationState(text);
