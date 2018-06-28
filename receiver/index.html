@@ -109,6 +109,7 @@ limitations under the License.
 					}
 				}
 			}else{
+			stopall();
 			clearInterval(strobotime);
 			}
 			//config.add("on");
@@ -131,7 +132,7 @@ limitations under the License.
      // function displayText(text) {
        // console.log(text);
         //document.getElementById("message").innerHTML=text;
-        //window.castReceiverManager.setApplicationState(text);
+        
       //};
 	  //function changeBackground(text){
 	  //console.log(text);
@@ -250,7 +251,7 @@ clearInterval(strobotime);
 		//########################Start the strobo###################################
 	var strobotime;	
 	function start(color, timestamps){
-	stopall();
+	//stopall();
 		if(color=="random"){
 			if(timestamps!="random"){
 				strobotime= setInterval(random_bg_color,timestamps);
@@ -268,6 +269,7 @@ clearInterval(strobotime);
 					fixedcolor_randomtime2();
 					}
 				}
+				//window.castReceiverManager.setApplicationState(text);
 	}
 	//setInterval(random_bg_color,time);
 
