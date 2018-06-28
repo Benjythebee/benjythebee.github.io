@@ -218,6 +218,7 @@ function rando(min, max) {
 	function blink(cl,stat){
     		//cl=random_hsl_color();
             state = !stat;
+			document.getElementById("conf2").innerHTML=(state);
             var color = (state? cl:'rgb(255, 255, 255)');
             document.getElementById("conf3").innerHTML=(color);
             document.body.style.backgroundColor  = color;
@@ -258,6 +259,7 @@ function rando(min, max) {
 		//################################Fixed color random time##################
 function fixedcolor_randomtime2(){
                 clearInterval(epilepsy);
+				document.getElementById("conf2").innerHTML=(state);
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 }
