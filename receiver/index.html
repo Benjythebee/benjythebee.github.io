@@ -262,28 +262,28 @@ clearInterval(strobotime);
 
 }
 		//########################Start the strobo###################################
-	var strobotime;	
-	function start(color, timestamps){
-	//stopall();
-		if(color=="random"){
-			if(timestamps!="random"){
-				strobotime= setInterval(random_bg_color,timestamps);
+var strobotime;	
+function start(color, timestamps){
+//stopall();
+	if(color=="random"){
+		if(timestamps!="random"){
+			strobotime= setInterval(random_bg_color,timestamps);
+			}else{
+				randomcolor_randomtime();
+				randomcolor_randomtime2();
+			}
+	}else{
+				if(timestamps!="random"){
+				cl=color;
+				blinkfixed(timestamps);
 				}else{
-					randomcolor_randomtime();
-					randomcolor_randomtime2();
-				}
-		}else{
-					if(timestamps!="random"){
-					cl=color;
-					blinkfixed(timestamps);
-					}else{
-					cl=color;
-					fixedcolor_randomtime();
-					fixedcolor_randomtime2();
-					}
-				}
-				//window.castReceiverManager.setApplicationState(text);
-	}
+				cl=color;
+				fixedcolor_randomtime();
+				fixedcolor_randomtime2();
+				};
+			};
+			//window.castReceiverManager.setApplicationState(text);
+}
 	//setInterval(random_bg_color,time);
 
 	
