@@ -229,7 +229,7 @@ function rando(min, max) {
             
 	}
 	function blinkfixed(cl,ti,stat){
-            blinkinterval=setInterval(function(){
+            epilepsy=setInterval(function(){
 			stat = !stat;
 			document.getElementById("conf3").innerHTML=(cl);
 			document.getElementById("conf2").innerHTML=(stat);
@@ -285,29 +285,28 @@ function stopall(){
 clearInterval(epilepsy);
 clearInterval(run);
 clearInterval(strobotime);
-clearInterval(blinkinterval);
 
 }
 		//########################Start the strobo###################################
 var strobotime;	
 
 function start(color, timestamps){
-
+stopall();
 	if(color=="random"){
 		if(timestamps!="random"){
-			 stopall();
+			
 			strobotime= setInterval(random_bghsl_color,timestamps);
 			}else{
-				 stopall();
+				
 				randomcolor_randomtime();
 				randomcolor_randomtime2();
 			}
 	}else{
 		if(timestamps!="random"){
-			 stopall();
+			 
 			blinkfixed(color,timestamps,state);
 		}else{
-			 stopall();
+			 
 			cl=color;
 			fixedcolor_randomtime(color);
 			fixedcolor_randomtime2();
