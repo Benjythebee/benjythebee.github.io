@@ -96,6 +96,7 @@ limitations under the License.
         window.messageBus.onMessage = function(event) {
           console.log('Message [' + event.senderId + ']: ' + event.data);
           // display the message from the sender
+		  stopall();
          document.getElementById("conf4").innerHTML=event.data;
 		 //displayText(event.data);
 		 //######################################################MESSAGE RECEIVED ################################
@@ -281,7 +282,7 @@ clearInterval(strobotime);
 var strobotime;	
 
 function start(color, timestamps){
-stopall();
+
 	if(color=="random"){
 		if(timestamps!="random"){
 			strobotime= setInterval(random_bghsl_color,timestamps);
