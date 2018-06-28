@@ -168,11 +168,7 @@ limitations under the License.
         //document.getElementById("message").innerHTML=text;
         
       //};
-	  //function changeBackground(text){
-	  //console.log(text);
-	  //document.getElementById("body").style.background-color=text;
-	  //window.castReceiverManager.setApplicationState(text)
-	  //}
+
 	//#################################################################Start strobo functions ##############################
 	function random_int(max){
 			var result=Math.floor(Math.random()*Math.floor(max));
@@ -221,8 +217,8 @@ function rando(min, max) {
 	}
 	function blink(cl,stat){
     		//cl=random_hsl_color();
-            state = !stat;
-            var color = (state? cl:'rgb(255, 255, 255)');
+            stat = !stat;
+            var color = (stat? cl:'rgb(255, 255, 255)');
             document.getElementById("conf3").innerHTML=(color);
 			document.getElementById("conf2").innerHTML=(stat);
             document.body.style.backgroundColor  = color;
@@ -266,7 +262,7 @@ function fixedcolor_randomtime2(){
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 }
-function fixedcolor_randomtime(cl) { 
+function fixedcolor_randomtime(cl,state) { 
 			l=get_interval();
 			num=(random_int(800));
 			document.getElementById("conf3").innerHTML=(cl);
