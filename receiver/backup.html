@@ -48,7 +48,11 @@ limitations under the License.
   </head>
   <body>
   <div id="txt">
-
+  <p id="conf4">conf4</p>
+	<DIV id="message">Strobo!</DIV>
+	<p id="conf1">conf1</p>
+	<p id="conf2">conf2</p>
+	<p id="conf3">conf3</p>
 	</div>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
@@ -102,6 +106,8 @@ limitations under the License.
 			var receivedd= received.replace(/[\[\]']+/g, '');
 			var config = receivedd.split(",");
 			
+         document.getElementById("conf4").innerHTML=receivedd;
+			document.getElementById("conf2").innerHTML=config[0];
 			
 			var statee=(config[0]+", "+config[2]+", "+ config[4])
 			window.castReceiverManager.setApplicationState(event.data);
@@ -110,19 +116,20 @@ limitations under the License.
 				if(config[2]=="random" ){
 					if(config[4]!="random"){
 					
+					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[1]);
 					start(config[2],config[1]);//random;fixed
 					
 					}else{
-
+					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[4]);
 					start(config[2],config[4]);//random;random
 					
 					}
 				}else{
 					if(config[4]!="random"){
-
+					document.getElementById("conf1").innerHTML=(config[3]+" "+ config[1]);
 					start(config[3],config[1]);//fixed;fixed
 					}else{
-
+					document.getElementById("conf1").innerHTML=(config[3]+" "+ config[4]);
 					start(config[3],config[4]);//fixed;random
 					}
 				}
@@ -203,20 +210,25 @@ function rando(min, max) {
 		return cssHSL;
 	}
 	function random_bghsl_color() {
+    	var lightness=rando(45,60);
 		var cssHSL = "hsl(" + (360 * Math.random()) + "," +(70 + 100 * Math.random()) + "%,"+ rando(45,60)+"%)";
+        document.getElementById("conf3").innerHTML=(cssHSL);
         document.body.style.backgroundColor = cssHSL;
 	}
 	function blink(cl,stat){
     		//cl=random_hsl_color();
             state = !stat;
+			document.getElementById("conf2").innerHTML=(state);
             var color = (state? cl:'rgb(255, 255, 255)');
-
+            document.getElementById("conf3").innerHTML=(color);
             document.body.style.backgroundColor  = color;
             
 	}
 	function blinkfixed(cl,ti,stat){
             epilepsy=setInterval(function(){
 			stat = !stat;
+			document.getElementById("conf3").innerHTML=(cl);
+			document.getElementById("conf2").innerHTML=(stat);
             var color = (stat? cl:'rgb(255, 255, 255)');
 
             document.body.style.backgroundColor  = color;
@@ -247,6 +259,7 @@ function rando(min, max) {
 		//################################Fixed color random time##################
 function fixedcolor_randomtime2(){
                 clearInterval(epilepsy);
+				document.getElementById("conf2").innerHTML=(state);
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 }
