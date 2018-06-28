@@ -96,15 +96,14 @@ limitations under the License.
         window.messageBus.onMessage = function(event) {
           console.log('Message [' + event.senderId + ']: ' + event.data);
           // display the message from the sender
-		  stopall();
+
          document.getElementById("conf4").innerHTML=event.data;
 		 //displayText(event.data);
 		 //######################################################MESSAGE RECEIVED ################################
 		 	var state = false;
-var data="[on,500, random, #ff00aa, fixed]"
-var received= data.replace(/\s/g, '');
-var receivedd= received.replace(/[\[\]']+/g, '');
-var config = receivedd.split(",");
+			var received= event.data.replace(/\s/g, '');
+			var receivedd= received.replace(/[\[\]']+/g, '');
+			var config = receivedd.split(",");
          document.getElementById("conf4").innerHTML=received;
 			document.getElementById("conf2").innerHTML=config[4];
 			var statee=(config[0]+", "+config[2]+", "+ config[4])
@@ -282,7 +281,7 @@ clearInterval(strobotime);
 var strobotime;	
 
 function start(color, timestamps){
-
+	 stopall();
 	if(color=="random"){
 		if(timestamps!="random"){
 			strobotime= setInterval(random_bghsl_color,timestamps);
