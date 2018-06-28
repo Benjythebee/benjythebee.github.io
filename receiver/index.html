@@ -84,7 +84,7 @@ limitations under the License.
         window.messageBus.onMessage = function(event) {
           console.log('Message [' + event.senderId + ']: ' + event.data);
           // display the message from the sender
-         
+         document.getElementById("conf4").innerHTML=event.data;
 		 //displayText(event.data);
 		 	var received= event.data.replace(/[\[\]']+/g, '');
 			var config = received.split(",");
