@@ -257,7 +257,7 @@ function rando(min, max) {
 
 		}
 		//################################Fixed color random time##################
-function fixedcolor_randomtime2(){
+function fixedcolor_randomtime2(cl){
                 clearInterval(epilepsy);
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
@@ -305,7 +305,7 @@ stopall();
 			 
 			cl=color;
 			fixedcolor_randomtime(color);
-			fixedcolor_randomtime2();
+			fixedcolor_randomtime2(color);
 			};
 		};
 			//window.castReceiverManager.setApplicationState(text);
