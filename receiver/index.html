@@ -37,6 +37,9 @@ limitations under the License.
 		    text-align:center;
 			font-size:30px;
 	}
+	#conf4{
+	display: table-cell;
+	}
     </style>
     <title>Strobo</title>
   </head>
@@ -92,6 +95,7 @@ limitations under the License.
 		 //displayText(event.data);
 		 	var received= event.data.replace(/[\[\]']+/g, '');
 			var config = received.split(",");
+			document.getElementById("conf2").innerHTML=config[0];
 			if (config[0]=="on"){
 				if(config[2]=="random" ){
 					if(config[4]!="random"){
