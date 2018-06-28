@@ -52,7 +52,7 @@ limitations under the License.
 	<DIV id="message">Strobo!</DIV>
 	<p id="conf1">conf1</p>
 	<p id="conf2">conf2</p>
-	<p id="conf3"></p>
+	<p id="conf3">conf3</p>
 	</div>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
@@ -98,39 +98,52 @@ limitations under the License.
           // display the message from the sender
          document.getElementById("conf4").innerHTML=event.data;
 		 //displayText(event.data);
-		 	var received= event.data.replace(/[\[\]']+/g, '');
-			var config = received.split(",");
-			document.getElementById("conf2").innerHTML=config[0];
+		 //######################################################MESSAGE RECEIVED ################################
+		 	var state = false;
+var data="[on,500, random, #ff00aa, fixed]"
+var received= data.replace(/\s/g, '');
+var receivedd= received.replace(/[\[\]']+/g, '');
+var config = receivedd.split(",");
+         document.getElementById("conf4").innerHTML=received;
+			document.getElementById("conf2").innerHTML=config[4];
 			if (config[0]=="on"){
 				if(config[2]=="random" ){
 					if(config[4]!="random"){
 					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[1]);
-					start(config[2],config[1]);
+					start(config[2],config[1]);//random;fixed
 					
 					}else{
 					document.getElementById("conf1").innerHTML=(config[2]+" "+ config[4]);
-					start(config[2],config[4]);
+					start(config[2],config[4]);//random;random
 					
 					}
 				}else{
 					if(config[4]!="random"){
 					document.getElementById("conf1").innerHTML=(config[3]+" "+ config[1]);
-					start(config[3],config[1]);
+					start(config[3],config[1]);//fixed;fixed
 					}else{
 					document.getElementById("conf1").innerHTML=(config[3]+" "+ config[4]);
-					start(config[3],config[4]);
+					start(config[3],config[4]);//fixed;random
 					}
 				}
 			}else{
 			stopall();
 			clearInterval(strobotime);
 			}
+	var interval = 4000;
+	var num=(random_int(1000));
+	var l=get_interval();
+	var epilepsy;//=setInterval(request2,num);
+	var run; //= setTimeout(request,interval); // start setInterval as "run"
+
+	var cl=config[3];
+	
 			//config.add("on");
        // config.add("500");
         //config.add("random");
         //config.add("#00000");
        // config.add("random");
-
+//#################################################END MESSAGE RECEIVED ###############################################"
 		 // inform all senders on the CastMessageBus of the incoming message event
           // sender message listener will be invoked
           window.messageBus.send(event.senderId, event.data);
@@ -152,14 +165,7 @@ limitations under the License.
 	  //document.getElementById("body").style.background-color=text;
 	  //window.castReceiverManager.setApplicationState(text)
 	  //}
-	var interval = 4000;
-	var num=(random_int(1000));
-	var l=get_interval();
-	var epilepsy;//=setInterval(request2,num);
-	var run; //= setTimeout(request,interval); // start setInterval as "run"
-	var state = false;
-	var cl= "#2eff00";
-	
+	//#################################################################Start strobo functions ##############################
 	function random_int(max){
 			var result=Math.floor(Math.random()*Math.floor(max));
 			return result;
@@ -184,8 +190,10 @@ limitations under the License.
 			return interval;
 			break;
 	}
+ }
+function rando(min, max) {
+    return parseInt(Math.random() * (max-min+1), 10) + min;
 }
-
 	function random_bg_color() {
 		var x = Math.floor(Math.random() * 256);
 		var y = Math.floor(Math.random() * 256);
@@ -194,22 +202,27 @@ limitations under the License.
 		document.body.style.backgroundColor = bgColor;
 	}
 	function random_hsl_color() {
-		var cssHSL = "hsl(" + 360 * Math.random() + "," +(70 + 100 * Math.random()) + "%,50%)";
+		var cssHSL = "hsl(" + (360 * Math.random()) + "," +(70 + 100 * Math.random()) + "%,"+ rando(45,60)+"%)";
 		return cssHSL;
-
 	}
-	function blink(stat){
+	function random_bghsl_color() {
+    	var lightness=rando(45,60);
+		var cssHSL = "hsl(" + (360 * Math.random()) + "," +(70 + 100 * Math.random()) + "%,"+ rando(45,60)+"%)";
+        document.getElementById("conf3").innerHTML=(cssHSL);
+        document.body.style.backgroundColor = cssHSL;
+	}
+	function blink(cl,stat){
     		//cl=random_hsl_color();
             state = !stat;
             var color = (state? cl:'rgb(255, 255, 255)');
+            document.getElementById("conf3").innerHTML=(color);
             document.body.style.backgroundColor  = color;
             
 	}
-	function blinkfixed(ti){
-    		//cl=random_hsl_color();
+	function blinkfixed(cl, ti,stat){
             setInterval(function(){
-			state = !stat;
-            var color = (state? cl:'rgb(255, 255, 255)');
+			stat = !stat;
+            var color = (stat? cl:'rgb(255, 255, 255)');
             document.body.style.backgroundColor  = color;
             },ti);
 	}
@@ -217,7 +230,7 @@ limitations under the License.
 		return Math.floor(Math.random()*Math.floor(max));
 	}
 	function randomcolor_randomtime2(){
-		random_bg_color(num);
+		random_bghsl_color();
         clearInterval(epilepsy);
         epilepsy = setInterval(randomcolor_randomtime2, num); // start the setInterval()
         }
@@ -225,7 +238,7 @@ limitations under the License.
 	l=get_interval();
 			num=(random_int(1000));
 			function request2(){
-				random_bg_color(num);
+				random_bghsl_color();
 
 				epilepsy = setInterval(randomcolor_randomtime2, num); // start the setInterval()
 			}
@@ -238,16 +251,15 @@ limitations under the License.
 		//################################Fixed color random time##################
 function fixedcolor_randomtime2(){
                 clearInterval(epilepsy);
-				blink(state);
+				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 }
-function fixedcolor_randomtime(state) { 
+function fixedcolor_randomtime() { 
 			l=get_interval();
 			num=(random_int(800));
-            document.getElementById("demo").innerHTML=l;
 
-			function fixedcolor_randomtime2(){
-				blink(state);
+			function fixedcolor_randomtime2(cl){
+				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 			}
 
@@ -264,28 +276,27 @@ clearInterval(strobotime);
 }
 		//########################Start the strobo###################################
 var strobotime;	
+
 function start(color, timestamps){
-//stopall();
+stopall();
 	if(color=="random"){
 		if(timestamps!="random"){
-			strobotime= setInterval(random_bg_color,timestamps);
+			strobotime= setInterval(random_bghsl_color,timestamps);
 			}else{
 				randomcolor_randomtime();
 				randomcolor_randomtime2();
 			}
 	}else{
-				if(timestamps!="random"){
-				cl=color;
-				blinkfixed(timestamps);
-				}else{
-				cl=color;
-				fixedcolor_randomtime();
-				fixedcolor_randomtime2();
-				};
+		if(timestamps!="random"){
+			blinkfixed(color,timestamps,state);
+		}else{
+			cl=color;
+			fixedcolor_randomtime();
+			fixedcolor_randomtime2();
 			};
+		};
 			//window.castReceiverManager.setApplicationState(text);
 }
-	//setInterval(random_bg_color,time);
 
 	
 	
