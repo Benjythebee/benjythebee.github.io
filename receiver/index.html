@@ -56,6 +56,7 @@ limitations under the License.
 	</div>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
+		var cl;
       window.onload = function() {
         cast.receiver.logger.setLevelValue(0);
         window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
@@ -97,16 +98,17 @@ limitations under the License.
           console.log('Message [' + event.senderId + ']: ' + event.data);
           // display the message from the sender
 
-         document.getElementById("conf4").innerHTML=event.data;
 		 //displayText(event.data);
 		 //######################################################MESSAGE RECEIVED ################################
-		 	var state = false;
+		 	
 
 			var received= event.data.replace(/\s/g, '');
 			var receivedd= received.replace(/[\[\]']+/g, '');
 			var config = receivedd.split(",");
+			
          document.getElementById("conf4").innerHTML=receivedd;
 			document.getElementById("conf2").innerHTML=config[0];
+			
 			var statee=(config[0]+", "+config[2]+", "+ config[4])
 			window.castReceiverManager.setApplicationState(event.data);
 			cl=config[3];
@@ -152,7 +154,7 @@ limitations under the License.
         window.castReceiverManager.start({statusText: "Application is starting"});
         console.log('Receiver Manager started');
       };
-	var cl;
+	var state = false;
 	var interval = 4000;
 	var num=(random_int(1000));
 	var l=get_interval();
