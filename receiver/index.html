@@ -226,12 +226,13 @@ function rando(min, max) {
             document.body.style.backgroundColor  = color;
             
 	}
-	function blinkfixed(cl, ti,stat){
+	function blinkfixed(cl,ti,stat){
             setInterval(function(){
 			stat = !stat;
-            var color = (stat? cl:'rgb(255, 255, 255)');
-			document.getElementById("conf3").innerHTML=(color);
+			document.getElementById("conf3").innerHTML=(cl);
 			document.getElementById("conf2").innerHTML=(stat);
+            var color = (stat? cl:'rgb(255, 255, 255)');
+
             document.body.style.backgroundColor  = color;
             },ti);
 	}
@@ -263,11 +264,12 @@ function fixedcolor_randomtime2(){
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 }
-function fixedcolor_randomtime() { 
+function fixedcolor_randomtime(cl) { 
 			l=get_interval();
 			num=(random_int(800));
-
-			function fixedcolor_randomtime2(cl){
+			document.getElementById("conf3").innerHTML=(cl);
+			document.getElementById("conf2").innerHTML=(stat);
+			function fixedcolor_randomtime2(){
 				blink(cl,state);
 				epilepsy = setInterval(fixedcolor_randomtime2, num); // start the setInterval()
 			}
@@ -300,7 +302,7 @@ function start(color, timestamps){
 			blinkfixed(color,timestamps,state);
 		}else{
 			cl=color;
-			fixedcolor_randomtime();
+			fixedcolor_randomtime(color);
 			fixedcolor_randomtime2();
 			};
 		};
