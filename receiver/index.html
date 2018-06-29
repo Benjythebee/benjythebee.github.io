@@ -109,7 +109,7 @@ limitations under the License.
 			var received= event.data.replace(/\s/g, '');
 			var receivedd= received.replace(/[\[\]']+/g, '');
 			var config = receivedd.split(",");
-			
+			document.getElementById("textwarning").innerHTML="";
 			
 			var statee=(config[0]+", "+config[2]+", "+ config[4])
 			window.castReceiverManager.setApplicationState(event.data);
