@@ -16,17 +16,43 @@ limitations under the License.
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <style type="text/css">
 	  body {
 	    overflow:hidden;
 		background-color: #ffffff;
 	  }
+      div{
 
+	    text-align:center;
+	    border:0px solid silver;
+	   
+	    vertical-align:middle;
+	    color:#FFFFFF;
+	    font-weight:bold;
+	    font-family:Verdana, Geneva, sans-serif;
+	    font-size:40px;
+	}
+	#textwarning{
+	 height:720PX;
+	width:1280PX;
+	margin-left:auto;
+	margin-right:auto;
+	display: table-cell;
+	}
+	p{
+	font-size:25px;
+	font-weight:bold;
+	}
     </style>
-    <title>Strobo</title>
+    <title>Strobo Cast</title>
   </head>
-  <body>
-
+  <body><div id="textwarning">
+<DIV id="message"><i class="fas fa-exclamation-triangle"></i>Photosensitive Seizure Warning</DIV>
+<p class="warning" id="textw">This app has a high risk of triggering seizures for people with photosensitive epilepsy.</p>
+<p class="warning" id="textwa">These seizures may have a variety of symptoms, including lightheadedness, altered vision,<br /> eye or face twitching, jerking or shaking of arms or legs, disorientation, confusion, or momentary loss of awareness. <br />Seizures may also cause loss of consciousness or convulsions that can lead to injury from falling down or striking nearby objects. </p>
+<p class="warning" id="textwarn">Immediately stop using this app and consult a doctor if you experience any of these symptoms.</p>
+<p class="warning" id="textwarni">User discretion is advised.</p></div>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
 		var cl;
